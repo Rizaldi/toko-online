@@ -132,6 +132,19 @@ class toko_model extends CI_Model
 		return $query;
 	}
 
+	function delete_item($id_barang='',$nama_barang=''){
+		$this->load->database();
+		$condition = '';
+    	if($id_item <> ''){
+   			$condition.=" AND id_barang = '$id_barang' ";
+    	}
+    	if($id_kategori <> ''){
+   			$condition.=" AND nama_barang = '$nama_barang' ";
+    	}
+		$query = $this->db->query("DELETE FROM barang WHERE 1=1 $condition");
+		return $query;
+	}
+
 	function update_track($id_transaksi,$gudang='',$pengiriman='',$perjalanan='',$sampai=''){
 		$this->load->database();
 		$condition = '';
@@ -176,4 +189,6 @@ class toko_model extends CI_Model
 		");
 		return $query
 	}
+
+	
 }
