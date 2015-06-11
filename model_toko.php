@@ -120,15 +120,28 @@ class toko_model extends CI_Model
     		WHERE id_token = $row['id_token']");
         return $query;
     } 
-    function hapus_user($id_user){
-    	$this->load->database();    	
+    function delete_user($id_user){
+    	$this->load->database();     	   	
     	$query = $this->db->query("DELETE FROM user WHERE id_user = $id_user");
     	return $query;
     }
 
-    function hapus_toko($id_toko){
+    function delete_toko($id_toko){
     	$this->load->database();
     	$query = $this->db->query("DELETE FROM toko WHERE id_toko = $id_toko");
+		return $query;
+	}
+
+	function delete_item($id_barang='',$nama_barang=''){
+		$this->load->database();
+		$condition = '';
+    	if($id_item <> ''){
+   			$condition.=" AND id_barang = '$id_barang' ";
+    	}
+    	if($id_kategori <> ''){
+   			$condition.=" AND nama_barang = '$nama_barang' ";
+    	}
+		$query = $this->db->query("DELETE FROM barang WHERE 1=1 $condition");
 		return $query;
 	}
 
@@ -176,4 +189,6 @@ class toko_model extends CI_Model
 		");
 		return $query
 	}
+
+	
 }
